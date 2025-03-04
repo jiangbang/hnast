@@ -1,0 +1,59 @@
+#vim /etc/init.d/hnast-api-admin
+#!bin/bash
+#chkconfig:2345 55 25
+###########################################################################
+# @author: maowei 
+# @desc: 开机启动$0
+# @time: 2020-10-19
+###########################################################################
+#processname:$0
+#description:source $0 server
+##取文件名
+SERVER_NAME=$0
+DEPLOY_DIR=/home/www/hnast/api
+lock=${DEPLOY_DIR}/${SERVER_NAME}.lock
+STDOUT_FILE=${DEPLOY_DIR}/${SERVER_NAME}/log/${SERVER_NAME}.nohup.log
+start(){
+        if [ -e $lock ];then
+            echo "$0 service is running"
+        else
+            nohup ${DEPLOY_DIR}/${SERVER_NAME}/${SERVER_NAME}-start.sh > $STDOUT_FILE 2>&1 &
+            echo "starting $0 service...."
+            touch $lock
+            exit 0
+        fi
+}
+stop(){
+		nohup ${DEPLOY_DIR}/${SERVER_NAME}/${SERVER_NAME}-stop.sh > $STDOUT_FILE 2>&1 &
+        pkill $0
+        echo "stoping $0 service...."
+        rm -rf $lock
+}
+status(){
+        if [ -e $lock ];then
+            echo "$0 service is running"
+        else
+            echo "$0 service already stoped"
+        fi
+}
+restart(){
+        stop
+        start
+}
+case "$1" in
+"start")
+        start
+        ;;
+"stop")
+        stop
+        ;;
+"status")
+        status
+        ;;
+"restart")           
+        restart 
+        ;; 
+*)               
+        echo "useage:$0 start|stop|status|restart"
+        ;; 
+esac

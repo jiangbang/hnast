@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.glface.modules.mapper.ProjectMapper">
+    <select id="searchAll"  resultType="com.glface.modules.model.Project">
+        SELECT s.*
+        from pm_project s
+        where
+        s.del_flag=0
+        <if test="project.name != null and project.name != ''">
+            and s.name like concat('%',#{project.name},'%')
+        </if>
+        <if test="project.code != null and project.code != ''">
+            and s.code like concat('%',#{project.code},'%')
+        </if>
+        <if test="project.categoryId != null and project.categoryId != ''">
+            and s.category_id = #{project.categoryId}
+        </if>
+    </select>
+</mapper>

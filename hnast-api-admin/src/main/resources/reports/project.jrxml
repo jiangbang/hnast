@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="project" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="53665f8f-2ec6-4597-b13c-af287eee7120">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="project"/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<subDataset name="Dataset1" uuid="aeec7191-9d44-4556-b3c5-2005e16aaec1">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="project - JSON File"/>
+		<queryString language="JSON">
+			<![CDATA[types]]>
+		</queryString>
+		<field name="typeName" class="java.lang.String">
+			<property name="net.sf.jasperreports.json.field.expression" value="name"/>
+			<fieldDescription><![CDATA[name]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString language="json">
+		<![CDATA[]]>
+	</queryString>
+	<field name="code" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="code"/>
+		<fieldDescription><![CDATA[code]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="name"/>
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="org" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="org"/>
+		<fieldDescription><![CDATA[org]]></fieldDescription>
+	</field>
+	<field name="content" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="content"/>
+		<fieldDescription><![CDATA[content]]></fieldDescription>
+	</field>
+	<field name="applyDate" class="java.sql.Date">
+		<property name="net.sf.jasperreports.json.field.expression" value="applyDate"/>
+		<fieldDescription><![CDATA[applyDate]]></fieldDescription>
+	</field>
+	<field name="org.chargeName" class="java.lang.String"/>
+	<field name="org.chargeTitle" class="java.lang.String"/>
+	<field name="org.chargeMobile" class="java.lang.String"/>
+	<field name="org.orgPhone" class="java.lang.String"/>
+	<field name="org.chargeEmail" class="java.lang.String"/>
+	<field name="org.orgAddress" class="java.lang.String"/>
+	<field name="org.orgFax" class="java.lang.String"/>
+	<field name="content.basis" class="java.lang.String"/>
+	<variable name="code1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{code}]]></variableExpression>
+	</variable>
+	<variable name="name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="640" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="10" width="555" height="25" uuid="f6ca33c2-7451-438d-9bf9-6e43f4adfe41"/>
+				<textElement>
+					<font fontName="华文宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA["项目编号："+$F{code}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="80" width="555" height="60" uuid="6897929b-5309-4a8d-8a5b-68d2cce32bc7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="华文宋体" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[长沙市科学技术协会项目申报书]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="175" width="65" height="19" uuid="888f206d-a2ec-4230-ada2-e78e02078283"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="华文宋体"/>
+				</textElement>
+				<text><![CDATA[项目名称：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="153" y="168" width="339" height="25" uuid="1b29f002-ee38-439f-a7d6-f43aaf553bdd"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="华文宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement isPrintRepeatedValues="false" x="153" y="211" width="339" height="40" uuid="6fcd9316-39c7-4205-ac4c-4940158b1d1b">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="b3d36d55-e8a5-4b86-9864-79e51f3a0177">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JsonDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("types")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="40" width="339">
+						<textField>
+							<reportElement x="0" y="0" width="200" height="31" uuid="43a3a0aa-f905-4e2e-95ff-fbcfe268f882"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="华文宋体"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{typeName}+"    □"]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="490" width="555" height="35" uuid="47c90084-f27b-4190-9e20-77b07d89ecea"/>
+				<textElement textAlignment="Center">
+					<font fontName="华文宋体" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[长沙市科学技术协会]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="180" y="525" width="198" height="20" uuid="4e94a6d6-3997-4192-bc5e-a3729c136790"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="华文宋体" isBold="true"/>
+				</textElement>
+				<text><![CDATA[二○一六年制]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="215" width="65" height="15" uuid="5e183fa3-40f3-4e7e-bb2b-a7ffebf256a3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="华文宋体"/>
+				</textElement>
+				<text><![CDATA[项目类型：]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="153" y="255" width="338" height="25" uuid="67dd5173-4e71-409b-a2bf-11e6efd500b9"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="华文宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="153" y="289" width="338" height="27" uuid="09da2c7a-6792-41b2-aa9e-a864a43372df"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="60" y="255" width="65" height="36" uuid="c973b2b7-b510-4b21-9b9d-2a36bbe85a00"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="华文宋体"/>
+				</textElement>
+				<text><![CDATA[申报单位:
+（公章）]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="60" y="299" width="65" height="18" uuid="76cdaa02-8fcc-4bd8-abaa-5f3f0546abaa"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="华文宋体"/>
+				</textElement>
+				<text><![CDATA[申报日期：]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="182" y="601" width="198" height="30" uuid="3dd9ca74-edb2-4762-8697-96a4c04f9a6c"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="华文宋体" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA["第"+$V{PAGE_NUMBER}+"页"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="392" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="21" y="90" width="519" height="219" uuid="599b16c1-feca-4ead-9f2c-376236967e13"/>
+				<textElement textAlignment="Left">
+					<font fontName="华文宋体" size="15" isBold="false"/>
+				</textElement>
+				<text><![CDATA[   1.本申报书是申报长沙市科协项目的依据，从长沙市科协网站“长沙市科协项目管理系统”在线填写，内容须实事求是，表述应明确、严谨。相应栏目要求填写完整。
+
+   2.每个申请项目单独填写项目申报书，同一申报书申请两个或两个以上项目视作无效。
+
+   3.封面中“项目名称”须按长沙市科协年度项目指南中所设定的内容或申报通知要求填写，应确切反映项目内容和范围，最多不超过20个汉字。“项目类型”中，在所选项后面的“□”中划“√”。“申报单位” 须填写单位全称。“项目编号”由系统自动生成。
+
+   4.申报书中“项目负责人”应当填写项目单位直接组织实施该项目的责任人。“项目总体目标及预期绩效”是指项目预期达到的目标以及预期的社会、经济和生态效益等。“项目组织实施条件”，指项目单位在实施项目过程中应当具备的人员条件、资金条件、设施条件及其他相关条件。
+
+   5.初审通过后的项目在“项目申报中心”的“项目管理”栏中显示“推荐” 状态，请项目申报单位在该栏中将“项目申报书”下载并按WORD格式A4纸打印一式五份，封面加盖单位公章后送长沙市科协“项目受理中心”（科普惠农项目和科普惠民项目需区、县（市）科协签署意见）。申请重点项目还需提交“项目可行性报告”一式五份。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="9" width="555" height="30" uuid="d4fc0d64-288c-461c-8ba0-cb0776f7d098"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="华文宋体" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[填 报 说 明]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="391" width="100" height="1" uuid="7cd4afc9-1735-4ed0-b798-b4336c471460"/>
+			</break>
+		</band>
+		<band height="713" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<frame borderSplitType="NoBorders">
+				<reportElement x="0" y="0" width="554" height="689" uuid="e133fbaa-c559-45bf-85c7-81707a5fad3f">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.5"/>
+				</box>
+				<line>
+					<reportElement x="0" y="41" width="553" height="1" uuid="a886cac5-e49a-4b43-b7d0-3408a1786d83"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="1" y="70" width="552" height="1" uuid="86f08bb5-a5d9-4e07-9093-6fa300b97728">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="1" y="101" width="553" height="1" uuid="08cc3097-2749-4308-be5f-9f1e2a7ed1e3">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="12" y="5" width="467" height="30" uuid="f58d7344-8658-42c4-8297-080cc9e106f1"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体" size="18"/>
+					</textElement>
+					<text><![CDATA[一、项目申报单位基本情况]]></text>
+				</staticText>
+				<line>
+					<reportElement x="1" y="130" width="553" height="1" uuid="1b0384b5-26bd-4725-9850-55b2ca410e44">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="1" y="164" width="553" height="1" uuid="2a6d6ed7-ba8b-4f55-b61b-017097b6a60c">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="119" y="41" width="1" height="123" uuid="0cedcc51-553c-42ed-829f-e040aace9cd1">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="274" y="41" width="1" height="123" uuid="f5c6c2f1-1f40-46f7-9fee-84d5a39e59ae">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="411" y="41" width="1" height="123" uuid="f2482fd2-4a4d-4f0e-a09f-543faed4e021">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="1" y="204" width="553" height="1" uuid="b8e11b88-65e4-45fc-a4d6-3c1176b78ac0">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="13" y="168" width="467" height="30" uuid="a2112763-8078-4e15-bb87-a8f47c93ab88"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体" size="18"/>
+					</textElement>
+					<text><![CDATA[二、项目申请理由及立项依据和目的]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="125" y="41" width="139" height="28" uuid="206f2ac0-1348-4c3a-9a01-0ba19d5e4fc1"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{org.chargeName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="5" y="42" width="94" height="28" uuid="fdc3a6ff-0088-40a7-b4ba-afc015e048ae"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<text><![CDATA[项目负责人]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="281" y="42" width="94" height="28" uuid="2d9b105c-04be-41d5-bb77-f0d3de664fc5"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<text><![CDATA[职称/职务]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="6" y="72" width="94" height="28" uuid="f273037d-a368-410d-b4cc-6f9668c0aa91"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<text><![CDATA[联系电话]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="6" y="102" width="94" height="28" uuid="ddffedd1-ba8d-4bba-8bde-07485f2a44db"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<text><![CDATA[电子邮箱]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="6" y="133" width="94" height="28" uuid="aa2f0173-cc32-49b5-9c5e-1e64b3b8363a"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<text><![CDATA[单位地址]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="281" y="73" width="94" height="28" uuid="f7bad0a6-a0b1-4b69-a252-fdb503ce857a"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<text><![CDATA[手 机]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="281" y="103" width="94" height="28" uuid="d18c5974-e27e-4078-a669-8cb3e070d33c"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<text><![CDATA[传 真]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="281" y="131" width="94" height="28" uuid="f31e87a7-e003-4879-af2c-c46f804d5ae8"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<text><![CDATA[邮政编码]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="416" y="43" width="127" height="26" uuid="462b81d8-e469-4c28-8155-e7ab3c726a9b"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{org.chargeTitle}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="125" y="72" width="139" height="28" uuid="1d041f29-1d15-4537-9bfe-d655c62600aa"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{org.orgPhone}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="125" y="102" width="139" height="28" uuid="7727f15a-7909-47d4-bf98-f89d86f6701f"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{org.orgPhone}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="125" y="133" width="139" height="28" uuid="d7b31e82-b79b-41aa-9e5a-f15d94e39c1e"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="华文宋体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{org.orgAddress}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="416" y="73" width="127" height="26" uuid="607b16cd-863b-4ab1-8451-07276bea0ee8"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{org.chargeMobile}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="416" y="102" width="128" height="30" uuid="b778f2d2-c70d-404a-a6b0-a485eede0d2e"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{org.orgFax}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="416" y="132" width="127" height="31" uuid="fa6f7bb1-91ad-4ac9-b696-502f06b9f4a0"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{org.chargeEmail}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="4" y="224" width="540" height="448" uuid="6514d96c-93a0-4c69-aa87-81b13d0c24aa">
+						<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font fontName="华文宋体" size="15"/>
+						<paragraph lineSpacing="1_1_2" lineSpacingSize="1.0" spacingBefore="0"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{content.basis}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<break>
+				<reportElement x="0" y="700" width="99" height="1" uuid="f45021a0-cc9a-4a7f-a050-c640c37cbfcb"/>
+			</break>
+		</band>
+		<band height="326"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="208" y="22" width="146" height="31" uuid="89cda3d1-9326-4c57-aa17-5f6421af62ff"/>
+				<textElement textAlignment="Center">
+					<font fontName="华文宋体" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA["第"+$V{PAGE_NUMBER}+"页"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

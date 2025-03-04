@@ -1,0 +1,21 @@
+server:
+  port: 8400
+
+logging:
+  level:
+    com.glface: DEBUG
+  file:
+    name: hnast/log/${spring.application.name}.log
+
+#自定义属性 文件上传路径
+myself:
+  classpath: /home/www/hnast/api/resources
+  fileUploadDir: /home/www/hnast/file
+  #文件预览目录
+  filePreviewDir: /home/www/hnast/preview
+
+  #微信开放平台创建的网站 设置的授权回调域
+  callBack: http://hnast.hnzsi.com/pms/#/wx/callBack
+  bindCallBack: http://hnast.hnzsi.com/pms/#/wx/bindCallBack
+  callBackEms: http://hnast.hnzsi.com/ems/#/wx/callBack
+  bindCallBackEms: http://hnast.hnzsi.com/ems/#/wx/bindCallBack

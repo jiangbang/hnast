@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.glface.modules.sp.mapper.SampleConditionMapper">
+
+    <resultMap id="ExpertResultMap" type="com.glface.base.dto.SampleConditionDto">
+        <id column="id" property="id"/>
+        <result column="expert_id" property="expertId"/>
+        <result column="name" property="name"/>
+        <result column="studied" property="studied"/>
+        <result column="org_name" property="orgName"/>
+        <result column="ex_project" property="exProject"/>
+        <result column="mobile" property="mobile"/>
+        <result column="star" property="star"/>
+        <result column="name" property="baseCategory"/>
+        <result column="positional_name" property="positional"/>
+    </resultMap>
+
+    <select id="getExpertList" resultMap="ExpertResultMap">
+        SELECT e.name,e.id AS expert_id, e.studied, e.org_name, e.mobile, e.star, b.name, p.name AS positional_name
+        FROM sp_expert e
+        INNER JOIN sp_expert_category c ON c.expert_id = e.id
+        INNER JOIN sp_base_category b ON b.id = c.category_id
+        LEFT JOIN sp_base_positional p ON p.id = e.positional_id
+        WHERE b.id = #{categoryId}
+        AND c.del_flag = 0
+        AND e.del_flag = 0
+        AND e.status = 2
+        <choose>
+            <when test="star = 0 and star = '' ">
+                AND e.star != 5
+            </when>
+            <when test="stat != 0 and star != '' ">
+                AND e.star = #{star}
+            </when>
+        </choose>
+        <if test="majorId != null and majorId != ''">
+            AND e.major_category_id = #{majorId}
+        </if>
+        <if test="names != null and names != ''">
+            AND e.name NOT IN
+            <foreach collection="names" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="orgNames != null and orgNames != ''">
+            AND e.org_name NOT IN
+            <foreach collection="orgNames" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="expertId != null and expertId != '' ">
+            AND e.id NOT IN
+            <foreach collection="expertId" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="exProject != null and exProject != '' ">
+            AND e.ex_project IN
+            <foreach item="item" index="index" collection="exProject.split(',')" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        LIMIT #{num}
+    </select>
+
+    <select id="getExpertOne" resultMap="ExpertResultMap">
+        SELECT e.name, e.id AS expert_id, e.studied, e.org_name, e.mobile, e.star, b.name, p.name AS positional_name
+        FROM sp_expert e
+        INNER JOIN sp_expert_category c ON c.expert_id = e.id
+        INNER JOIN sp_base_category b ON b.id = c.category_id
+        LEFT JOIN sp_base_positional p ON p.id = e.positional_id
+        WHERE b.id = #{categoryId}
+        AND c.del_flag = 0
+        AND e.del_flag = 0
+        AND e.status = 2
+        AND e.star = '5'
+        <if test="majorId != null and majorId != ''">
+            AND e.major_category_id = #{majorId}
+        </if>
+        <if test="names != null and names != ''">
+            AND e.name NOT IN
+            <foreach collection="names" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="orgNames != null and orgNames != ''">
+            AND e.org_name NOT IN
+            <foreach collection="orgNames" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="expertId != null and expertId != '' ">
+            AND e.id NOT IN
+            <foreach collection="expertId" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="exProject != null and exProject != '' ">
+            AND e.ex_project IN
+            <foreach item="item" index="index" collection="exProject.split(',')" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        LIMIT 1
+    </select>
+
+    <select id="findExpertOne" resultMap="ExpertResultMap">
+        SELECT e.name, e.studied, e.org_name, e.mobile, e.star, p.name AS positional_name
+        from sp_expert e
+                 LEFT JOIN sp_base_positional p ON p.id = e.positional_id
+        where e.name = #{name}
+    </select>
+
+    <update id="updateExpertConditionIsItemByExpertNames">
+        <!-- 设置is_item = '0' -->
+        UPDATE sp_expert_condition SET is_item = '0'
+        <!-- 设置WHERE条件 -->
+        WHERE name = #{name}
+        <!-- expert_name动态值通过foreach标签来实现 -->
+        <foreach collection="expertNames" item="expertName" open=" AND expert_name IN (" separator="," close=")">
+            #{expertName}
+        </foreach>
+    </update>
+
+    <update id="updateExpertConditionNotIsItemByExpertNames">
+        <!-- 设置is_item = '1' -->
+        UPDATE sp_expert_condition SET is_item = '1'
+        <!-- 设置WHERE条件 -->
+        WHERE name = #{name}
+        <!-- expert_name动态值通过foreach标签来实现 -->
+        <foreach collection="expertNames" item="expertName" open=" AND expert_name NOT IN (" separator="," close=")">
+            #{expertName}
+        </foreach>
+    </update>
+
+
+    <select id="selectExpertCondition" resultType="com.glface.modules.sp.model.ExpertCondition">
+        SELECT *
+        FROM sp_expert_condition
+        WHERE del_flag = 1
+          AND name = #{name}
+          AND sample_id = #{sampleId}
+          AND expert_name = #{expertName}
+        ORDER BY rounds DESC LIMIT 1
+    </select>
+
+    <select id="queryAllExpertId" resultType="java.lang.String">
+        select expert_id from sp_expert_condition where condition_id = #{conditionId} AND del_flag = 0
+    </select>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.glface.modules.mapper.UserMapper">
+    <sql id="pageSearchSql">
+        from sys_user u
+        <!-- 此处写法是为了查询到没有部门信息的用户 -->
+        left join (select uo.* from sys_user_office uo where uo.del_flag = 0 ) luo on u.id = luo.user_id
+        left join (select o.* from sys_office o where o.del_flag = 0 ) lo on luo.office_id = lo.id
+        where
+        u.del_flag=0
+        <if test="user.account != null and user.account != ''">
+            and u.account like concat('%',#{user.account},'%')
+        </if>
+        <if test="user.nickname != null and user.nickname != ''">
+            and u.nickname like concat('%',#{user.nickname},'%')
+        </if>
+        <if test="user.mobile != null and user.mobile != ''">
+            and u.mobile like concat('%',#{user.mobile},'%')
+        </if>
+        <if test="user.officeCode != null and user.officeCode != ''">
+            and lo.code like concat(#{user.officeCode},'%')
+        </if>
+    </sql>
+    <select id="pageSearch"  resultType="com.glface.model.SysUser">
+       SELECT DISTINCT(u.id), u.*
+        <include refid="pageSearchSql"/>
+        <if test="page.orderBy != null and page.orderBy != ''">
+        <!--使用$运算符，Mybatis不会进行预编译，直接把值传进去，无法防止sql注入-->
+            order by ${page.orderBy}
+        </if>
+        limit #{page.start}, #{page.pageSize}
+    </select>
+    <select id="pageSearchCount"  resultType="int">
+        SELECT count(DISTINCT(u.id))
+         <include refid="pageSearchSql"/>
+    </select>
+</mapper>

@@ -1,0 +1,70 @@
+#自定义属性 跨域访问
+myself:
+  differentDomain: true
+server:
+  undertow:
+    threads:
+      io: 2
+      worker: 20
+    buffer-size: 512
+  thread:
+    prefix: zeus-thread-
+    core-pool-size: 4
+    maximum-pool-size: 1024
+    keep-alive-time: 10
+
+spring:
+  profiles:
+    #加载哪个配置文件 dev代表开发，prod代表正式环境192.168.1.60
+    active: dev
+  transaction:
+    rollback-on-commit-failure: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+#    url: jdbc:mysql://172.26.171.159:3306/hnast?allowPublicKeyRetrieval=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/hnast?allowPublicKeyRetrieval=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    sql-script-encoding: utf-8
+#    username: glface
+#    password: graphics407
+    username: root
+    password: 123456
+    # Hikari 连接池配置
+    hikari:
+      # 连接池名称
+      pool-name: glface-hikaricp
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，单位毫秒
+      max-lifetime: 1765000
+      # 连接池最大连接数
+      maximum-pool-size: 64
+      # 最小空闲连接数量
+      minimum-idle: 4
+      # 数据库连接超时时间,默认30秒，即30000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  redis:
+    host: localhost
+    port: 6380
+    password: graphics
+    timeout: 15S
+    lettuce:
+      pool:
+        max-active: 64
+        min-idle: 4
+
+#详细配置地址https://mybatis.plus/config
+mybatis-plus:
+  configuration:
+    #是否开启自动驼峰命名规则（camel case）映射
+    map-underscore-to-camel-case: true
+    #关闭日志打印到文件
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:/mapping/*.xml
+  global-config:
+    banner: false
+    db-config:
+      #字段策略默认为NOT_NULL   IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断(如果为null则不跟新)"),NOT_EMPTY:"非空判断"
+      update-strategy: IGNORED
+      logic-delete-field: delFlag  # 全局逻辑删除的实体字段名(
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)

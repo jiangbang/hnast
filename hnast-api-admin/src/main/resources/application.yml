@@ -1,0 +1,31 @@
+urlFilter:
+  permit: /static/**,/system/account/login,/system/account/reg,/system/account/resetPassword,/system/account/loginByCode,/system/account/logout,/system/user/testPageSearch,/system/code/image,/system/code/sms,/system/wx/getCode,/system/wx/ems/getCode,/system/wx/login
+myself:
+  #微信开放平台创建的网站应用的appsecret
+  appsecret: 704c9b906c6c0de83ac8b6d4f60d2170
+  #微信开放平台创建的网站应用的appid
+  appid: wx035b9afba19b6f53
+  scope: snsapi_login
+
+spring:
+  application:
+    name: @project.artifactId@
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    #没有找到资源时使用自定义处理器处理
+    throw-exception-if-no-handler-found: true
+  resources:
+    #是否添加静态资源映射
+    add-mappings: false
+  #上传限制
+  servlet:
+    multipart:
+      max-file-size: 512MB
+      max-request-size: 512MB
+  http:
+    multipart:
+    max-file-size: 512MB
+    max-request-size: 512MB
+  redis:
+    database: 1
