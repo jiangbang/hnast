@@ -6,6 +6,7 @@ import com.glface.base.bean.R;
 import com.glface.base.utils.Encodes;
 import com.glface.base.utils.StringUtils;
 import com.glface.common.ImageCode;
+import com.glface.common.utils.NewSmsUtil;
 import com.glface.common.utils.SmsUtil;
 import com.glface.common.web.ApiCode;
 import com.glface.model.SysSms;
@@ -81,7 +82,7 @@ public class ValidateCodeController {
         sysSms.setCreateBy(com.glface.modules.sys.utils.UserUtils.getUserId());
         sysSms.setUserId(com.glface.modules.sys.utils.UserUtils.getUserId());
         try {
-            sendResult = SmsUtil.sendCode(mobile, randomNum);
+            sendResult = NewSmsUtil.sendCode(mobile, Integer.valueOf(randomNum));
             sysSms.setReturnCode(sendResult.getString("code"));
             sysSms.setReturnDescription(sendResult.getString("description"));
             sysSms.setReturnResult(sendResult.getString("result"));
