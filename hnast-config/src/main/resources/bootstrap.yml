@@ -16,7 +16,7 @@ server:
 spring:
   profiles:
     #加载哪个配置文件 dev代表开发，prod代表正式环境192.168.1.60
-    active: dev
+    active: prod
   transaction:
     rollback-on-commit-failure: true
   datasource:
