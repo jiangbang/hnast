@@ -22,13 +22,13 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://172.26.171.159:3306/hnast?allowPublicKeyRetrieval=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-#    url: jdbc:mysql://localhost:3306/hnast?allowPublicKeyRetrieval=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://47.121.213.41:3306/hnast?allowPublicKeyRetrieval=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     sql-script-encoding: utf-8
     username: glface
     password: graphics407
 #    username: root
-#    password: 123456
+#    password: Aa8594427
     # Hikari 连接池配置
     hikari:
       # 连接池名称

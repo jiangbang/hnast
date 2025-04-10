@@ -53,6 +53,9 @@ public class AccountService {
         //逻辑处理
         SysUser user = userService.findUserByAccount(account);
 
+        if (user == null || !Encodes.md5(password, null).equals(user.getPassword())) {
+            throw new ServiceException(ApiCode.ACCOUNT_LOGIN_FAILED);
+        }
         // 判断最后一次登录时间和现在的时间是否相差五分钟
         Date lastLoginTime = user.getLastLoginTime();
         // 获取当前时间的Date对象表示

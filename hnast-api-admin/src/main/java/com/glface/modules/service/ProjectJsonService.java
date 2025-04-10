@@ -186,7 +186,9 @@ public class ProjectJsonService {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
         cfg.setDefaultEncoding("UTF-8");
         File reportFile = null;
+        String fixDocSize = null;
         try {
+            fixDocSize = SpringContextUtil.getProperty("myself.fixDocSize");
             reportFile = new File(Paths.get(SpringContextUtil.getProperty("myself.classpath"),"reports").toString());
             cfg.setDirectoryForTemplateLoading(reportFile);
             Template t = cfg.getTemplate("project.ftl");
@@ -205,21 +207,26 @@ public class ProjectJsonService {
         set.prettyPrint(false);
         Document doc = Jsoup.parse(swContent.toString());
         if (hasFix) {
-            doc = fixDoc(doc);
+            doc = fixDoc(doc,fixDocSize);
         }
         doc.outputSettings(set);
         return doc.toString();
     }
 
-    private Document fixDoc(Document doc) {
+    private Document fixDoc(Document doc, String fixDocSizeStr) {
+        int fixDocSize = 1080;
+        if(StringUtils.isNotBlank(fixDocSizeStr)){
+            fixDocSize = Integer.parseInt(fixDocSizeStr);
+        }
         Elements els = doc.getElementsByClass("wrap1");
         for (int i = 0; i < els.size(); i++) {
             Element el = (Element) els.get(i);
             int size = el.text().trim().length();
-            int len = size / 1080 + 1;
+            int len = size / fixDocSize + 1;
             int hen = 951 * len;
-            if (len > 1)
+            if (len > 1) {
                 hen += 12 * (len - 1);
+            }
             el.attr("style", "height:" + hen + "px;");
         }
         return doc;

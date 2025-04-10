@@ -23,6 +23,7 @@ myself:
   fileUploadDir: D:/tmp/file
   #文件预览目录
   filePreviewDir: D:/tmp/preview
+  fixDocSize: 951
 
   #微信开放平台创建的网站 设置的授权回调域
   callBack: http://kx.changsha.gov.cn/pms/#/wx/callBack

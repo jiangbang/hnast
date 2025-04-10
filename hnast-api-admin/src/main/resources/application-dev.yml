@@ -19,11 +19,11 @@ myself:
 
   # classpath: E:/workspace/java/xmgl2022/code/hnast/hnast-api-admin/src/main/resources
   # D:/hnast/resources
-  classpath: D:/hnast/resources
-  fileUploadDir: D:/tmp/file
+  classpath: /Users/bangjiang/Documents/gitrepo/study/hnast/hnast-api-admin/src/main/resources
+  fileUploadDir: /Users/bangjiang/Documents/gitrepo/study//tmp/file
   #文件预览目录
-  filePreviewDir: D:/tmp/preview
-
+  filePreviewDir: /Users/bangjiang/Documents/gitrepo/study/tmp/preview
+  fixDocSize: 951
   #微信开放平台创建的网站 设置的授权回调域
   callBack: http://kx.changsha.gov.cn/pms/#/wx/callBack
   bindCallBack: http://kx.changsha.gov.cn/pms/#/wx/bindCallBack

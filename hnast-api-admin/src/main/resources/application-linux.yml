@@ -13,7 +13,7 @@ myself:
   fileUploadDir: /home/www/hnast/file
   #文件预览目录
   filePreviewDir: /home/www/hnast/preview
-
+  fixDocSize: 951
   #微信开放平台创建的网站 设置的授权回调域
   callBack: http://hnast.hnzsi.com/pms/#/wx/callBack
   bindCallBack: http://hnast.hnzsi.com/pms/#/wx/bindCallBack
