@@ -127,9 +127,9 @@
 	<p class="kxTitle">
 		长沙市科学技术协会
 	</p>
-	<p class="time">
-		2021年制
-	</p>
+<#--	<p class="time">-->
+<#--		2021年制-->
+<#--	</p>-->
 </div>
 <!--page2-->
 <div class="wrap">
