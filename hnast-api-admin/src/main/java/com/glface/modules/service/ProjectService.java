@@ -154,6 +154,11 @@ public class ProjectService {
         }
         if (StringUtils.isBlank(planTypeId)) {
             throw new ServiceException(PROJECT_PLAN_TYPE_REQUIRED);
+        } else {
+            ProjectPlanType projectPlanType = planTypeService.get(planTypeId);
+            if (projectPlanType == null || StringUtils.isBlank(projectPlanType.getFatherId())) {
+                throw new ServiceException(PROJECT_PLAN_TYPE_FIRST);
+            }
         }
         Project project = null;
         if(StringUtils.isNotBlank(id)){

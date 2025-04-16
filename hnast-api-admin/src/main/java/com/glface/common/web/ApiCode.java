@@ -92,6 +92,7 @@ public enum ApiCode {
 	PROJECT_CATEGORY_REQUIRED("","项目类别不能为空!"),
 	PROJECT_BATCH_REQUIRED("","项目批次不能为空!"),
 	PROJECT_PLAN_TYPE_REQUIRED("","项目计划类型不能为空!"),
+	PROJECT_PLAN_TYPE_FIRST("","计划类型不能选择一级分类，请选择右侧二级分类!"),
 	PROJECT_NOT_EXIST("","项目不存在!"),
 	PROJECT_CREATE_FAILED_EXIST("","创建项目失败，已存在暂存项目！"),
 	PROJECT_STARTTIME_ERROR("","项目开始时间格式错误!"),
