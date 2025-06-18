@@ -104,18 +104,6 @@
 				 </#list>
 			</i></span>
 		</p>
-		<#--		<#list planTypes as planType>-->
-		<#--			<p >-->
-		<#--				<em class="w4 "><#if planType_index==0>项目类型：</#if></em><span class="underline w520 emi" ><i>${planType_index+1}.${planType.name}	-->
-		<#--			<#if project.planType??><#if project.planType.id??>-->
-		<#--				<#if project.planType.id == planType.id>-->-->
-		<#--					<img src="/pms/static/select.png" class="ysbzimg">-->
-		<#--			<#else>-->
-		<#--					<img src="/pms/static/noselect.png" class="ysbzimg">-->
-		<#--				</#if></#if></#if>	-->
-		<#--			</i></span>	-->
-		<#--			</p>	-->
-		<#--		</#list>	-->
 		<br/>
 		<br/>
 		<br/>
