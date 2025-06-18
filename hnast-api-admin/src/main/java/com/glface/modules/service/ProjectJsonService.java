@@ -31,10 +31,7 @@ import javax.annotation.Resource;
 
 import java.io.*;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.glface.common.web.ApiCode.PROJECT_FTL_NOTEXIST;
 import static com.glface.common.web.ApiCode.PROJECT_NOT_EXIST;
@@ -244,27 +241,17 @@ public class ProjectJsonService {
         try {
             ITextRenderer renderer = new ITextRenderer();
             renderer.setDocumentFromString(content);
-            ITextFontResolver fontResolver = renderer.getFontResolver();
-            String fontPath = new File(Paths.get(SpringContextUtil.getProperty("myself.classpath"),"fonts","SIMSUN.TTC").toString()).getAbsolutePath();
+
+            // 字体处理
+            configureFontsAndResources(renderer);
+
             String shuiyinPath = new File(Paths.get(SpringContextUtil.getProperty("myself.classpath"),"reports","shuiyin.png").toString()).getAbsolutePath();
-            String staticPath = new File(Paths.get(SpringContextUtil.getProperty("myself.classpath"),"static").toString()).getPath();
-            //加载字体
-            fontResolver.addFont(fontPath, "Identity-H", false);
-            //解决图片相对路径问题
-            String system = System.getProperty("os.name").toLowerCase();
-            //renderer.getSharedContext().setBaseURL("file:/E:/workspace/java/xmgl2022/code/hnast/hnast-api-admin/target/classes/static/");
-            if (system!=null&&system.indexOf("windows") >= 0) {
-                staticPath = staticPath.replaceAll("\\\\", "\\/");
-                String f = "file:/" + staticPath + "/";
-                renderer.getSharedContext().setBaseURL(f);
-            } else {
-                renderer.getSharedContext().setBaseURL("file:" + staticPath + "/");
-            }
+            String simsunPath = new File(Paths.get(SpringContextUtil.getProperty("myself.classpath"),"fonts","SIMSUN.TTC").toString()).getAbsolutePath();
             renderer.layout();
             renderer.createPDF(os);
             os.flush();
             //添加水印
-            BaseFont base = BaseFont.createFont(fontPath + ",1", "Identity-H", true);
+            BaseFont base = BaseFont.createFont(simsunPath + ",1", "Identity-H", true);
             PdfReader reader = new PdfReader(os.toByteArray());
             PdfStamper stamper = new PdfStamper(reader, shuiyinPdfOutputStream);
             int total = reader.getNumberOfPages() + 1;
@@ -289,5 +276,45 @@ public class ProjectJsonService {
             throw new ServiceException(e.getMessage());
         }
         return shuiyinPdfOutputStream.toByteArray();
+    }
+
+    private void configureFontsAndResources(ITextRenderer renderer) throws IOException {
+        ITextFontResolver fontResolver = renderer.getFontResolver();
+
+        String sourceHanSansSCPath = new File(Paths.get(SpringContextUtil.getProperty("myself.classpath"),"fonts","SourceHanSansSC-Regular-2.otf").toString()).getAbsolutePath();
+        String simsunPath = new File(Paths.get(SpringContextUtil.getProperty("myself.classpath"),"fonts","SIMSUN.TTC").toString()).getAbsolutePath();
+//        String wenQuanYiFontPath = new File(Paths.get(SpringContextUtil.getProperty("myself.classpath"),"fonts","wqy-microhei.ttc").toString()).getAbsolutePath();
+
+        // 定义字体优先级列表（按全面性排序）
+        List<String> fontPaths = Arrays.asList(
+                simsunPath   ,         // 备选：宋体
+                sourceHanSansSCPath          // 思源黑体
+//                wenQuanYiFontPath     // 首选：开源全面中文字体
+        );
+
+        // 尝试加载可用的字体
+        for (String fontPath : fontPaths) {
+            File fontFile = new File(fontPath);
+            if (fontFile.exists()) {
+                try {
+                    fontResolver.addFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                    log.info("成功加载字体: {}", fontPath);
+                } catch (Exception e) {
+                    log.warn("字体加载失败: {}", fontPath, e);
+                }
+            }
+        }
+        // 设置基础URL
+        String staticPath = new File(Paths.get(SpringContextUtil.getProperty("myself.classpath"),"static").toString()).getPath();
+        //解决图片相对路径问题
+        String system = System.getProperty("os.name").toLowerCase();
+        //renderer.getSharedContext().setBaseURL("file:/E:/workspace/java/xmgl2022/code/hnast/hnast-api-admin/target/classes/static/");
+        if (system!=null&&system.indexOf("windows") >= 0) {
+            staticPath = staticPath.replaceAll("\\\\", "\\/");
+            String f = "file:/" + staticPath + "/";
+            renderer.getSharedContext().setBaseURL(f);
+        } else {
+            renderer.getSharedContext().setBaseURL("file:" + staticPath + "/");
+        }
     }
 }

@@ -10,7 +10,10 @@
 	}
 
 	html, body{ width:100%; height:100%;}
-	body {color: #000;font-family:"SimSun";font-size:16px;margin:0;padding:0;}
+	td {
+		font-family: "Source Han Sans SC", "SimSun", sans-serif;
+	}
+	body {color: #000;font-family:"SimSun", sans-serif;font-size:16px;margin:0;padding:0;}
 	a {color:#000;text-decoration:none;}
 	a:hover {text-decoration:none;color:#229aff;}
 	body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {margin: 0;padding: 0;list-style:none;}
