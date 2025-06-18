@@ -234,7 +234,8 @@ public class ProjectJsonService {
         String content = getHtmlContent(id, true);
         content = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">" + content;
         content = content.replaceAll("/pms/static/", "");
-        content = content.replaceAll("amp;", "");
+        // 处理未转义的&符号
+        content = content.replaceAll("&(?![a-zA-Z]+;|#[0-9]+;|#x[0-9a-fA-F]+;)", "&amp;");
 
         ByteArrayOutputStream os = new ByteArrayOutputStream();//不需要路径，写入内存
         ByteArrayOutputStream shuiyinPdfOutputStream = new ByteArrayOutputStream();//不需要路径，写入内存
