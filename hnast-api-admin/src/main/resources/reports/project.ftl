@@ -10,10 +10,10 @@
 	}
 
 	html, body{ width:100%; height:100%;}
-	td {
+	body {color: #000;font-family:"SimSun", sans-serif;font-size:16px;margin:0;padding:0;}
+	.contentFont {
 		font-family: "Source Han Sans SC", "SimSun", sans-serif;
 	}
-	body {color: #000;font-family:"SimSun", sans-serif;font-size:16px;margin:0;padding:0;}
 	a {color:#000;text-decoration:none;}
 	a:hover {text-decoration:none;color:#229aff;}
 	body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {margin: 0;padding: 0;list-style:none;}
@@ -178,7 +178,7 @@
 		</tr>
 
 		<tr>
-			<td class="tdcon" colspan="4">
+			<td class="tdcon contentFont" colspan="4" >
 				<#if project.content.basis??>${project.content.basis}</#if>
 			</td>
 		</tr>
@@ -192,7 +192,7 @@
 		</tr>
 
 		<tr>
-			<td class="tdcon" colspan="4">
+			<td class="tdcon contentFont" colspan="4" >
 				<#if project.content.content??>${project.content.content}</#if>
 			</td>
 		</tr>
@@ -205,7 +205,7 @@
 			<td class="tdh tdborder2" colspan="4"><span class="titleFont">四、项目总体目标及预期绩效</span></td>
 		</tr>
 		<tr>
-			<td class="tdcon" colspan="4">
+			<td class="tdcon contentFont" colspan="4" >
 				<#if project.content.target??>${project.content.target}</#if>
 			</td>
 		</tr>
@@ -267,7 +267,7 @@
 			<td class="tdh tdborder2" colspan="4"><span class="titleFont">六、项目组织实施条件</span></td>
 		</tr>
 		<tr>
-			<td class="tdcon" colspan="4">
+			<td class="tdcon contentFont" colspan="4">
 				<#if project.content.conditions??>${project.content.conditions}</#if>
 			</td>
 		</tr>
