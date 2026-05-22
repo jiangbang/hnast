@@ -224,7 +224,8 @@ public class ProjectJsonService {
             if (len > 1) {
                 hen += 12 * (len - 1);
             }
-            el.attr("style", "height:" + hen + "px;");
+            // 使用最小高度保留原分页版式，内容较多时允许区块继续撑开，避免 PDF 生成时被裁剪。
+            el.attr("style", "min-height:" + hen + "px;");
         }
         return doc;
     }

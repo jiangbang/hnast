@@ -21,7 +21,7 @@
 	fieldset, img, html, body, iframe {border: 0 none;}
 	.red{ color:#F00;}
 	.wrap{ width:640px; height:950px; margin:10px auto; padding:0; overflow:hidden;}
-	.wrap1{ width:640px; margin:auto; padding:0; overflow:hidden;margin-top: 10px;}
+	.wrap1{ width:640px; margin:auto; padding:0; overflow:visible;margin-top: 10px;}
 	.wrap1_border{  border: solid;border-width: 1px 1px 1px 1px;}
 	.wrap h3,.wrap1 h3{ font-size:32px; margin:10px 0 0 0; line-height:60px; font-weight:bold; padding:0; overflow:hidden; text-align:center;}
 	.name{ height:30px; line-height:30px; margin:15px 0; padding:0; overflow:hidden; text-align:center;}
